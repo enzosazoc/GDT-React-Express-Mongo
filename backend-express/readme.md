@@ -1,32 +1,15 @@
-# Gestor de Tareas
-Aplicación básica para gestionar tareas.
-
-<br>
-
-## Características de la aplicación
----
-- Cliente Servidor
-- MVC
-- CRUD
-- API REST
-- Autenticación con JWT
-- Roles de usuario
-
-<br>
+# Gestor de Tareas - Backend
 
 ## Tecnologías utilizadas
----
 - React
 - Bootstrap
 - Node.js
 - Express.js
 - MongoDB
 
-
 <br>
 
 ## Dependecias npm
----
 Dependencias globales:
 - @babel/core@7.12.3
 - @babel/node@7.12.6
@@ -35,7 +18,6 @@ Dependencias globales:
 <br>
 
 ## Comandos
----
 ### **Ejecutar proyecto**
 Para iniciar el proyecto:
 ```
