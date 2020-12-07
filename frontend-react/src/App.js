@@ -62,7 +62,7 @@ export default class App extends Component {
                     <Navbar state={this.state} actualizarEstado={this.actualizarEstado}/>
 
                     
-                    <div className="container p-2" style={{marginTop: "56px"}}>
+                    <div className="position-relative container p-2">
                         <Switch>
                             <Route exact path="/" render={(props) => <Home {...props} state={this.state} actualizarEstado={this.actualizarEstado}/> } />
                             <Route path="/login" render={(props) => <Login {...props} logueado={this.state.logueado} actualizarEstado={this.actualizarEstado}/> } />

@@ -11,7 +11,7 @@ function Navbar(props) {
     }
 
     return (
-        <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <nav className="navbar sticky-top navbar-expand-lg navbar-dark bg-dark shadow-sm">
             <div className="container">
                 <Link className="navbar-brand" to="/"><div className="text-primary font-weight-bold font-italic">GDT</div></Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

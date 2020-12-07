@@ -70,11 +70,12 @@ function Proyecto(props) {
 
     return (
         <div>
+            <br/>
             <LoadingNav visible={loading}/>
 
             { !loading && (            
                 <div className="d-flex flex-wrap pt-4">
-
+                
                     { errorServidor ? 
                         <div className="col-12 p-0">
                             <div className="alert alert-danger alert-dismissible fade show" role="alert">
