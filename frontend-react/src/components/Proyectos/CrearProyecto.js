@@ -42,9 +42,14 @@ function CrearProyecto(props) {
             return;
         }
         const res = await proyectoService.crearProyecto(proyecto);
-        if (res === 1 || res === 9) setErrorServidor('Lo sentimos, ocurrió un error al crear proyecto');
-        if (res === 0) cerrarModal();
+        if (!res || res === 1 || res === 9) {
+            setErrorServidor('Lo sentimos, ocurrió un error al crear proyecto');
+            setLoading(false);
+            return
+        }
+        cerrarModal();
         setLoading(false);
+        props.history.push(`/proyectos/${res._id}`);
     }
 
     const cerrarModal = async () => {

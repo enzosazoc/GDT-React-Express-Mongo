@@ -13,6 +13,7 @@ router.get('/:id/proyectos', auth.verificarToken, proyectoCtrl.obtenerProyectosP
 router.post('/', auth.verificarToken, auth.esAdmin, validaciones.validarUsuarioDuplicado, validaciones.validarRoles, usuarioCtrl.crearUsuario);
 router.put('/:id', auth.verificarToken, auth.esAdmin, validaciones.validarUsuarioDuplicado, validaciones.validarRoles, usuarioCtrl.actualizarUsuario);
 router.delete('/:id', auth.verificarToken, auth.esAdmin, usuarioCtrl.eliminarUsuario);
+router.delete('/:id/proyectos', auth.verificarToken, proyectoCtrl.eliminarProyectosPorUsuario);
 router.post('/cambiar-username', auth.verificarToken, usuarioCtrl.cambiarUsername);
 router.post('/cambiar-password', auth.verificarToken, usuarioCtrl.cambiarPassword);
 router.post('/eliminar-cuenta', auth.verificarToken, usuarioCtrl.eliminarCuenta);

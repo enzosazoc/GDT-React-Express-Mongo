@@ -11,7 +11,7 @@ function Navbar(props) {
     }
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark shadow-sm">
             <div className="container">
                 <Link className="navbar-brand" to="/"><div className="text-primary font-weight-bold font-italic">GDT</div></Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,8 +54,11 @@ function Navbar(props) {
                                     <i className="fas fa-user-circle"></i>
                                 </div>
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <Link className="dropdown-item text-secondary small" to="/perfil">Perfil</Link>
-                                    <div className="dropdown-item text-secondary small" role="button" onClick={cerrarSesion}>Cerrar sesión</div>
+                                    <div className="pl-4 text-secondary small" role="layout">Rol:</div>
+                                    <div className="pl-4 text-primary small">{props.state.roles.includes('ROLE_ADMIN') ? 'Admin' : 'Usuario'}</div>
+                                    <hr className="my-2"/>
+                                    <Link className="dropdown-item text-secondary" to="/perfil"><i className="fas fa-address-card"></i> Perfil</Link>
+                                    <div className="dropdown-item text-secondary" role="button" onClick={cerrarSesion}><i className="fas fa-sign-out-alt"></i> Cerrar sesión</div>
                                 </div>
                             </li>
                         ) }

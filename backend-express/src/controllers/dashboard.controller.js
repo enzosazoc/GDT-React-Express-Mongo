@@ -1,7 +1,7 @@
 import Proyecto from '../models/Proyecto';
 import Usuario from '../models/Usuario';
 
-// Función para obtener lod datos para el dashboard.
+// Función para obtener los datos para el dashboard.
 export const obtenerDatos = async (req, res) => {
     try {
         const proyectos = await Proyecto.find(null, 'nombre usuario tareas.nombre tareas._id');

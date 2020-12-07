@@ -15,7 +15,7 @@ const TareaSchema = new Schema({
     estado: {
         type: Boolean,
         default: false
-    }
+    },
 }, {
     timestamps: false,
     versionKey: false
@@ -32,10 +32,6 @@ const ProyectoSchema = new Schema({
         type: String,
         default: '',
         maxlength: 2000
-    },
-    estado: {
-        type: Boolean,
-        default: false
     },
     tareas: [TareaSchema],
     usuario: {

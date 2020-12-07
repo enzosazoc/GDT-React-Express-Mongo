@@ -21,7 +21,8 @@ export default class App extends Component {
         logueado: false,
         esUsuario: false,
         esAdmin: false,
-        loading: false
+        loading: false,
+        username: null
     }
 
     componentDidMount() {
@@ -30,15 +31,15 @@ export default class App extends Component {
 
     actualizarEstado = () => {
         const usuario = authService.obtenerUsuario();
-
         if (!usuario) {
             this.setState({
                 logueado: false,
                 esUsuario: false,
-                esAdmin: false
+                esAdmin: false,
+                roles: null
             })
         } else {
-            this.setState({logueado: true});
+            this.setState({logueado: true, roles: usuario.roles});
 
             if (usuario.roles.includes('ROLE_USUARIO')) {
                 this.setState({esUsuario: true});
@@ -56,12 +57,12 @@ export default class App extends Component {
 
     render() {
         return (
-            <div className="position-relative min-vh-100">
+            <div className="position-relative">
                 <Router className="">
                     <Navbar state={this.state} actualizarEstado={this.actualizarEstado}/>
 
                     
-                    <div className="container p-2">
+                    <div className="container p-2" style={{marginTop: "56px"}}>
                         <Switch>
                             <Route exact path="/" render={(props) => <Home {...props} state={this.state} actualizarEstado={this.actualizarEstado}/> } />
                             <Route path="/login" render={(props) => <Login {...props} logueado={this.state.logueado} actualizarEstado={this.actualizarEstado}/> } />
@@ -71,6 +72,9 @@ export default class App extends Component {
                             <PrivateRoute path="/admin" component={Admin} roles={[config.rol.ADMIN]}/>
                             <PrivateRoute path="/perfil" component={Perfil} roles={[config.rol.USUARIO, config.rol.ADMIN]}/>
                         </Switch>
+                        <br/>
+                        <br/>
+                        <br/>
                     </div>
                 </Router>
             </div>

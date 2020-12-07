@@ -3,7 +3,7 @@
 /* Para producción ------> https://node-gdt.herokuapp.com/api */
 
 const config = {
-    apiUrl: 'https://node-gdt.herokuapp.com/api',
+    apiUrl: 'http://localhost:4000/api',
     token: 'token',
     rol: {
         USUARIO: 'ROLE_USUARIO',

@@ -38,7 +38,7 @@ function Home(props) {
                     { !props.state.logueado && (
                         <div className="jumbotron bg-dark text-white shadow-sm">
                             <h1 className="display-4">Gestor de tareas</h1>
-                            <p className="lead">Aplicacíon básica, realizada con el fin de aprender y practicar algunas tecnologías de programación web.</p>
+                            <p className="lead">Aplicación básica, realizada con el fin de aprender y practicar algunas tecnologías de programación web.</p>
                             <hr className="my-4"/>
                             <p>Iniciar sesión para crear proyectos y tareas.</p>
                             <Link className="btn btn-primary btn-lg" to="/login">Iniciar sesión</Link>

@@ -9,6 +9,7 @@ function Usuarios() {
     const [usuarios, setUsuarios] = useState([]);
     const [datos, setDatos] = useState({proyectos: 0, usuarios: 0});
     const [datosGrafico, setDatosGrafico] = useState({});
+    const [errorServidor, setErrorServidor] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -27,7 +28,10 @@ function Usuarios() {
     }
 
     const setearDatos = (res) => {
-        if (!res || res === 1 || res === 9) return;
+        if (!res || res === 1 || res === 9) {
+            setErrorServidor('No se logró obtener los datos');
+            return;
+        }
         setDatos({proyectos: res.proyectos, usuarios: res.usuarios});
         setDatosGrafico({
             labels: res.proyectosPorUsuario.map(obj => obj.usuario),
@@ -41,14 +45,23 @@ function Usuarios() {
     }
 
     const setearUsuarios = (res) => {
-        if (!res || res === 1 || res === 9) return;
+        if (!res || res === 1 || res === 9) {
+            setErrorServidor('No se logró obtener los datos');
+            return;
+        }
         setUsuarios(res);
     }
 
     const obtenerFecha = (fecha) => {
         const fechaDate = new Date(fecha);
-        const fechaStr = fechaDate.getDate() + "-" + fechaDate.getMonth() + "-" + fechaDate.getFullYear();
+        const fechaStr = fechaDate.getDate() + "-" + (fechaDate.getMonth() + 1) + "-" + fechaDate.getFullYear();
         return fechaStr;
+    }
+
+    const recargar = () => {
+        setLoading(true);
+        setErrorServidor(null);
+        functionesIniciales();
     }
 
     return (
@@ -56,6 +69,18 @@ function Usuarios() {
             <LoadingNav visible={loading}/>
 
             { !loading && ( 
+                
+                errorServidor ?
+                    <div className="col-12 p-0 pt-4">
+                        <div className="alert alert-danger alert-dismissible fade show" role="alert">
+                            <i className="far fa-dizzy"></i> <b>Problemas de conexión con la base de datos.</b> {errorServidor}
+                            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <button className="btn btn-primary btn-lg" onClick={recargar}>Recargar</button>
+                    </div>
+                :
                 <div className="d-flex flex-wrap">
                     <div className="col-12 p-0">
                         <br/>
@@ -121,7 +146,8 @@ function Usuarios() {
                                         <tr className="text-secondary small">
                                             <th className="border-top-0">Username</th>
                                             <th className="border-top-0">Roles</th>
-                                            <th className="border-top-0">Fecha de creación</th>
+                                            <th className="border-top-0 text-right">Fecha de creación</th>
+                                            <th className="border-top-0 text-right">Última actualización</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -130,7 +156,8 @@ function Usuarios() {
                                                 return <tr key={index} className="text-secondary small">
                                                     <td className="text-truncate">{usu.username}</td>
                                                     <td className="text-truncate">{usu.roles.map(rol => rol.nombre).toString()}</td>
-                                                    <td className="text-truncate">{obtenerFecha(usu.createdAt)}</td>
+                                                    <td className="text-truncate text-right">{obtenerFecha(usu.createdAt)}</td>
+                                                    <td className="text-truncate text-right">{obtenerFecha(usu.updatedAt)}</td>
                                                 </tr>
                                             })
                                         }

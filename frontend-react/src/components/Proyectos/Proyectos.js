@@ -7,6 +7,7 @@ function Proyectos(props) {
 
     const [proyectos, setProyectos] = useState([]);
     const [modal, setModal] = useState(false);
+    const [errorServidor, setErrorServidor] = useState(false);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -20,6 +21,7 @@ function Proyectos(props) {
     const obtenerProyectos = async () => {
         const proyectos = await proyectoService.obtenerProyectosPorUsuario();
         if (!proyectos || proyectos === 1 || proyectos === 9) {
+            setErrorServidor(true)
             setLoading(false);
             return;
         }
@@ -35,6 +37,12 @@ function Proyectos(props) {
         const fechaDate = new Date(fecha);
         const fechaStr = fechaDate.getDate() + "-" + fechaDate.getMonth() + "-" + fechaDate.getFullYear();
         return fechaStr;
+    }
+
+    const recargar = () => {
+        setLoading(true);
+        setErrorServidor(null);
+        obtenerProyectos();
     }
 
     return (
@@ -59,7 +67,7 @@ function Proyectos(props) {
 
                     {/* Lista de proyectos */}
                     <div className="d-flex flex-wrap">
-                        {
+                        { proyectos.length > 0 ? 
                             proyectos.map( (pro, index) => {
                                 return <div key={index} className="col-12 col-sm-6 col-md-4 col-lg-3 p-1">
                                     <div className="card border-0 shadow-sm">
@@ -78,11 +86,25 @@ function Proyectos(props) {
                                     </div>
                                 </div>
                             })
+                            :
+                            ( errorServidor ?
+                                <div className="col-12 mt-5 text-center">
+                                    <div className="text-danger h4"><i className="far fa-dizzy"></i> Problemas de conexión con la base de datos. No se logró obtener los proyectos.</div>
+                                    <div className="mt-4">
+                                        <button className="btn btn-primary btn-lg" onClick={recargar}>Recargar</button>
+                                    </div>
+                                </div>
+                                : 
+                                <div className="col-12 mt-5 text-center">
+                                    <div className="h4" style={{color: "#b0bec5"}}><i className="far fa-folder-open"></i> Sin proyectos</div>
+                                </div> 
+                            )
                         }
+                        
                     </div>
 
                     {/* Modal: crear proyecto */}
-                    <CrearProyecto modal={modal} setModal={setModal} obtenerProyectos={obtenerProyectos} />
+                    <CrearProyecto modal={modal} setModal={setModal} obtenerProyectos={obtenerProyectos} history={props.history} />
                 </div>
             )}
         </div>

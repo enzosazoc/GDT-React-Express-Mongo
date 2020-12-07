@@ -34,8 +34,12 @@ function AgregarTarea(props) {
         let tareasModificadas = props.proyecto.tareas;
         tareasModificadas.push(tarea);
         props.setProyecto({...props.proyecto, tareas: tareasModificadas });
-        const pro = await proyectoService.actualizarProyecto(props.proyecto._id, props.proyecto);
-        props.setProyecto(pro);
+        const res = await proyectoService.actualizarProyecto(props.proyecto._id, props.proyecto);
+        if (!res || res === 1 || res === 9) {
+            props.setErrorServidor('No se logró crear la tarea.');
+            return;
+        }
+        props.setProyecto(res);
     }
 
     const mostrar = () => {

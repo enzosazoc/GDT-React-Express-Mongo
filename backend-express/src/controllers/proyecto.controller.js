@@ -87,3 +87,23 @@ export const eliminarProyecto = async (req, res) => {
         });
     }
 }
+
+// Eliminar proyectos por la id del usuario
+export const eliminarProyectosPorUsuario = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const idUsuario = req.idUsuario;
+        if (id === idUsuario) {
+            await Proyecto.remove({usuario: idUsuario});
+            res.status(204).json();
+        } else {
+            res.status(422).json('El usuario enviado y el usuario autenticado, no son iguales');
+        }
+    } catch (error) {
+        res.status(500).json({
+            error: 'Error del servidor',
+            entidad: 'Proyecto',
+            funcion: 'eliminarProyectosPorUsuario'
+        });
+    }
+}

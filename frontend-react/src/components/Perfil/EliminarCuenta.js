@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Form, Modal } from 'react-bootstrap';
 import authService from '../../services/auth.service';
 import usuarioService from '../../services/usuario.service';
+import proyectoService from '../../services/proyecto.service';
 import LoadingNav from '../Otros/LoadingNav';
 
 function EliminarCuenta(props) {
@@ -40,6 +41,7 @@ function EliminarCuenta(props) {
         if (!validar()) return;
         if (!validarUsuarioPrueba()) return;
         setLoading(true);
+        await proyectoService.eliminarProyectosPorUsuario();
         const res = await usuarioService.eliminarCuenta(usuario);
         if (res === 0) {
             setModal(true);

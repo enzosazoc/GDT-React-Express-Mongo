@@ -54,7 +54,10 @@ export const signIn = async (req, res) => {
         if(!passwordEncontrada) return res.status(401).json({token: null, message: 'Password incorrecta'});
 
         const rolesPayload = usuarioEncontrado.roles.map(rol => rol.nombre);
-        const payload = { id: usuarioEncontrado._id, username: usuarioEncontrado.username, roles: rolesPayload }
+        const payload = { 
+            id: usuarioEncontrado._id, 
+            username: usuarioEncontrado.username, 
+            roles: rolesPayload }
         const token = jwt.sign(payload, config.SECRET, { expiresIn: 86400 });
 
         res.json({token})

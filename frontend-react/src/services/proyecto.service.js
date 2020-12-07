@@ -52,8 +52,10 @@ const crearProyecto = async (proyecto) => {
     try {
         const usuarioObtenido = authService.obtenerUsuario();
         if (!usuarioObtenido) return 2;
+
         const usuario = {_id : usuarioObtenido.id};
         proyecto.usuario = usuario;
+
         const parametros = {
             method: 'POST',
             body: JSON.stringify(proyecto),
@@ -64,8 +66,10 @@ const crearProyecto = async (proyecto) => {
         }
 
         const res = await fetch(`${config.apiUrl}/proyectos`, parametros);
+        const pro = await res.json();
+        
         if (res.status === 201) {
-            return 0;
+            return pro;
         } else {
             return 1;
         }
@@ -116,13 +120,36 @@ const eliminarProyecto = async (id) => {
     }
 }
 
+const eliminarProyectosPorUsuario = async (id) => {
+    try {
+        const usuario = authService.obtenerUsuario();
+        const parametros = {
+            method: 'DELETE',
+            headers: { 'x-access-token': auth.obtenerToken() }
+        }
+
+        const res = await fetch(`${config.apiUrl}/usuarios/${usuario.id}/proyectos`, parametros);
+
+        if (res.status === 204) {
+            return 0; // proyectos eliminados correctamente
+        } else if (res.status === 422) { 
+            return 1; // el id del usuario enviado y el id del usuario autenticado, no son iguales
+        } else {
+            return 2;
+        }
+    } catch (error) {
+        return 9;
+    }
+}
+
 const proyectoService = {
     obtenerProyectos,
     obtenerProyectosPorUsuario,
     obtenerProyecto,
     crearProyecto,
     actualizarProyecto,
-    eliminarProyecto
+    eliminarProyecto,
+    eliminarProyectosPorUsuario
 }
 
 export default proyectoService;
