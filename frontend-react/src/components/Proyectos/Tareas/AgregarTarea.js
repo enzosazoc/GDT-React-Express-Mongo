@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import proyectoService from '../../../services/proyecto.service';
-import { Form } from 'react-bootstrap'
+import { Form } from 'react-bootstrap';
 
 function AgregarTarea(props) {
 
     const [tarea, setTarea] = useState({nombre: ''});
     const [errores, setErrores] = useState({});
     const [esInvalido, setEsInvalido] = useState({nombre: false});
-    const [visible, setVisible] = useState({nuevaTarea: 'd-none', btnAgregar: 'd-flex'});
+    const [nuevaTarea, setNuevaTarea] = useState(false);
 
     const onChange = (e) => {
         const { name, value } = e.target;
@@ -46,36 +46,45 @@ function AgregarTarea(props) {
     }
 
     const mostrar = () => {
-        setVisible({nuevaTarea: 'd-flex', btnAgregar: 'd-none'});
+        setNuevaTarea(true);
         setEsInvalido({nombre: false});
     }
 
     const ocultar = () => {
+        setNuevaTarea(false);
         setTarea({nombre: '', descripcion: ''});
-        setVisible({nuevaTarea: 'd-none', btnAgregar: 'd-flex'});
     }
 
     return ( <div className="col-12 p-0">
-        <div className={"col-12 p-1 " + visible.nuevaTarea}>
-            <div className="col-12 bg-white text-secondary d-flex align-items-start p-2 rounded shadow-sm">
-                <div className="p-2 flex-fill">
-                    <Form.Control name="nombre" size="sm" isInvalid={esInvalido.nombre} value={tarea.nombre} placeholder="Nombre de la tarea" onChange={onChange} />
-                    <Form.Control.Feedback type="invalid">{errores.nombre}</Form.Control.Feedback>
+        { nuevaTarea &&
+            <div className="col-12 p-1">
+                <div className="col-12 bg-white text-secondary d-flex align-items-start p-0 rounded shadow-sm">
+                    <div className="p-2 pl-5 flex-fill">
+                        <Form.Control name="nombre" size="sm" isInvalid={esInvalido.nombre} value={tarea.nombre} placeholder="Nombre de la tarea" onChange={onChange} />
+                        <Form.Control.Feedback type="invalid">{errores.nombre}</Form.Control.Feedback>
+                    </div>
+                    <div className="py-2 pl-1 pr-2 ">
+                        <button type="button" className="btn btn-outline-danger btn-sm" onClick={ocultar}>
+                            <i className="fas fa-times"></i>
+                        </button>
+                    </div>
                 </div>
-                <div className="py-2 pl-1 pr-2 ">
-                    <button type="button" className="btn btn-outline-danger btn-sm" onClick={ocultar}>
-                        <i className="fas fa-times"></i>
+            </div>
+        }
+        <div>
+            { !nuevaTarea ?
+                <div className="p-1">
+                    <button type="button" className="btn btn-primary btn-sm shadow-sm" onClick={mostrar} style={{width: "150px"}}>
+                        <i className="fas fa-plus"></i> Agregar Tarea
                     </button>
                 </div>
-            </div>
-        </div>
-        <div>
-            <div className={"p-1 " + visible.btnAgregar}>
-                <button type="button" className="btn btn-primary btn-sm shadow-sm" onClick={mostrar}><i className="fas fa-plus"></i> Agregar Tarea</button>
-            </div>
-            <div className={"p-1 " + visible.nuevaTarea}>
-                <button type="button" className="btn btn-primary btn-sm shadow-sm" onClick={crearTarea}><i className="fas fa-save"></i> Guardar</button>
-            </div>
+                :
+                <div className="p-1">
+                    <button type="button" className="btn btn-info btn-sm shadow-sm" onClick={crearTarea} style={{width: "150px"}}>
+                        <i className="fas fa-save"></i> Guardar
+                    </button>
+                </div>
+            }
         </div>
     </div>)
 }

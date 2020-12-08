@@ -37,7 +37,7 @@ function Usuarios() {
             labels: res.proyectosPorUsuario.map(obj => obj.usuario),
             datasets: [{
                 label: 'Proyectos',
-                backgroundColor: '#00bfa5',
+                backgroundColor: ['#03a9f4', '#00bfa5', '#3f51b5', '#8e24aa', '#546e7a'],
                 barThickness: '15',
                 data: res.proyectosPorUsuario.map(obj => obj.proyectos),
             }]

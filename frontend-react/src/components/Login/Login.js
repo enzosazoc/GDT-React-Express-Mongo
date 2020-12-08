@@ -77,7 +77,7 @@ function Login(props) {
                     <br/>
                     <div className="col-12 col-lg-8 col-xl-7 d-flex flex-wrap mx-auto">
                         <div className="col-12 p-2">
-                            <h4 className="text-secondary"><i className="fas fa-sign-in-alt"></i> Autenticación</h4>
+                            <h4 className="text-secondary"><i className="fas fa-sign-in-alt"></i> Login</h4>
                             <hr></hr>
                         </div>
                         <div className="col-12 col-md-5 col-lg-5 p-3">

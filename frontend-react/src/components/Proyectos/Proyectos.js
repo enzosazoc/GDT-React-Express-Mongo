@@ -14,10 +14,12 @@ function Proyectos(props) {
 
     useEffect(() => {
         obtenerProyectos();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     
     useEffect(() => {
         filtrar();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [busqueda]);
 
     const onChange = (e) => {

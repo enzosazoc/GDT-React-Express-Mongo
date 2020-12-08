@@ -60,6 +60,7 @@ function Tareas(props) {
 
     const handleOnDragEnd = async (result) => {
         if(!result.destination) return;
+        if (result.source.index === result.destination.index) return;
         const pro = Object.assign({}, props.proyecto);
         const [itemActualizado] = pro.tareas.splice(result.source.index, 1);
         pro.tareas.splice(result.destination.index, 0, itemActualizado);
