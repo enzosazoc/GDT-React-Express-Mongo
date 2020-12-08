@@ -1,4 +1,3 @@
-import { promises } from 'fs';
 import Rol from '../models/Rol';/*  */
 import Usuario from '../models/Usuario';/*  */
 import Proyecto from '../models/Proyecto'
@@ -58,18 +57,20 @@ const crearProyectos = async () => {
         if (count > 0) return;
         await Promise.all([
             new Proyecto({
-                nombre: 'Reparar vehiculo', 
-                descripcion: 'Reparar neumáticos de la camioneta Ford.', 
-                estado: false, 
+                nombre: 'Proyecto 1', 
+                descripcion: 'Prueba descripción proyecto 1', 
                 tareas: [
                     {
-                        nombre: 'Comprar neumáticos', 
+                        nombre: 'Prueba tarea 1', 
                     },
                     {
-                        nombre: 'Comprar herramientas', 
+                        nombre: 'Prueba tarea 2', 
                     },
                     {
-                        nombre: 'Reemplazar neumáticos ', 
+                        nombre: 'Prueba tarea 3', 
+                    },
+                    {
+                        nombre: 'Prueba tarea 4', 
                     }
                 ],
                 usuario: {
@@ -77,17 +78,29 @@ const crearProyectos = async () => {
                 }
             }).save(),
             new Proyecto({
-                nombre: 'Nueva casa', 
-                descripcion: 'Preparar la nueva casa.', 
-                estado: false,
+                nombre: 'Proyecto 2', 
+                descripcion: 'Prueba descripción proyecto 2',
                 usuario: {
                     _id: "5fb96de54ecd1532e8d88ab9"
                 }
             }).save(),
             new Proyecto({
-                nombre: 'Proyecto de prueba 1', 
-                descripcion: '', 
-                estado: false,
+                nombre: 'Proyecto 1', 
+                descripcion: 'Proyecto de prueba - usuario',
+                tareas: [
+                    {
+                        nombre: 'Prueba tarea 1', 
+                    },
+                    {
+                        nombre: 'Prueba tarea 2', 
+                    },
+                    {
+                        nombre: 'Prueba tarea 3', 
+                    },
+                    {
+                        nombre: 'Prueba tarea 4', 
+                    }
+                ],
                 usuario: {
                     _id: "5fb97c1c08b5731228f99b5e"
                 }

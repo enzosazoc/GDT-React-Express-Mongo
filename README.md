@@ -34,6 +34,7 @@ También será necesario instalar las siguientes dependencias de desarrollo:
 - @babel/cli@7.12.8
 - @babel/core@7.12.3
 - @babel/node@7.12.6
+- @babel/plugin-transform-runtime@7.12.1
 - @babel/preset-env@7.12.7
 - nodemon@2.0.6
 
@@ -55,3 +56,8 @@ npm start
 ```
 
 Ingresar a http://localhost:3000/
+
+<br>
+
+## Base de datos
+La base de datos se encuentra en la nube a través de MongoDB Atlas, por lo tanto la instalación no es necesaria.
