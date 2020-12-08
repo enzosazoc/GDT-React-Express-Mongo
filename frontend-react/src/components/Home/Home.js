@@ -24,7 +24,7 @@ function Home(props) {
 
                     <div className=" text-secondary p-4 pt-4 pb-5">
                         <h1 className="display-4">Gestor de tareas</h1>
-                        <p className="lead">Aplicación básica, realizada con el fin de aprender y practicar algunas tecnologías de programación web.</p>
+                        <p className="lead">Aplicación básica, realizada con el objetivo de aprender y practicar algunas tecnologías de programación web.</p>
                         <hr/>
                         { !props.state.logueado && (
                             <div className="d-flex flex-wrap">

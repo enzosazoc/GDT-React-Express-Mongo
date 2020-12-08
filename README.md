@@ -1,5 +1,5 @@
 # Gestor de Tareas
-Aplicación básica, realizada con el fin de aprender y practicar algunas tecnologías de programación web.
+Aplicación básica, realizada con el objetivo de aprender y practicar algunas tecnologías de programación web.
 
 <br>
 
