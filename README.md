@@ -3,6 +3,11 @@ Aplicación básica, realizada con el fin de aprender y practicar algunas tecnol
 
 <br>
 
+## Demo
+Probar la aplicación: https://gdt-react.herokuapp.com/
+
+<br>
+
 ## Características de la aplicación
 - API REST
 - MVC
