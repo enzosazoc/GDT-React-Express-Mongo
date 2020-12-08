@@ -54,7 +54,7 @@ function Navbar(props) {
                                     <i className="fas fa-user-circle"></i>
                                 </div>
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <div className="pl-4 text-secondary small" role="layout">Rol:</div>
+                                    <div className="pl-4 text-secondary small">Rol:</div>
                                     <div className="pl-4 text-primary small">{props.state.roles.includes('ROLE_ADMIN') ? 'Admin' : 'Usuario'}</div>
                                     <hr className="my-2"/>
                                     <Link className="dropdown-item text-secondary" to="/perfil"><i className="fas fa-address-card"></i> Perfil</Link>

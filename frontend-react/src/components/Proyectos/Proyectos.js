@@ -6,6 +6,8 @@ import LoadingNav from '../Otros/LoadingNav';
 function Proyectos(props) {
 
     const [proyectos, setProyectos] = useState([]);
+    const [proyectosFiltrados, setProyectosFiltrados] = useState([]);
+    const [busqueda, setBusqueda] = useState('');
     const [modal, setModal] = useState(false);
     const [errorServidor, setErrorServidor] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -13,6 +15,15 @@ function Proyectos(props) {
     useEffect(() => {
         obtenerProyectos();
     }, []);
+    
+    useEffect(() => {
+        filtrar();
+    }, [busqueda]);
+
+    const onChange = (e) => {
+        const { value } = e.target;
+        setBusqueda(value);
+    }
 
     const abrirModal = () => {
         setModal(true);
@@ -26,7 +37,15 @@ function Proyectos(props) {
             return;
         }
         setProyectos(proyectos);
+        setProyectosFiltrados(proyectos);
         setLoading(false);
+    }
+
+    const filtrar = () => {
+        const proFiltrados = proyectos.filter(pro => {
+            return pro.nombre.toLowerCase().includes(busqueda.toLowerCase());
+        });
+        setProyectosFiltrados(proFiltrados);
     }
 
     const abrirProyecto = async (id) => {
@@ -57,10 +76,15 @@ function Proyectos(props) {
                     <hr></hr>
 
                     {/* Opciones */}
-                    <div className="p-1">
-                        <button type="button" className="btn btn-primary btn-sm shadow-sm" onClick={abrirModal}>
-                            <i className="fas fa-folder-plus"></i> Crear Proyecto
-                        </button>
+                    <div className="p-1 d-flex flex-wrap justify-content-between">
+                        <div className="col-12 col-sm-auto p-0">
+                            <button type="button" className="col col-sm-auto btn btn-primary btn-sm shadow-sm" onClick={abrirModal}>
+                                <i className="fas fa-folder-plus"></i> Crear Proyecto
+                            </button>
+                        </div>
+                        <div className="col-12 col-sm-auto p-0 d-flex mt-3 mt-sm-0">
+                            <input className="form-control form-control-sm" placeholder="Buscar" onChange={onChange}/>
+                        </div>
                     </div>
 
                     <hr></hr>
@@ -68,7 +92,7 @@ function Proyectos(props) {
                     {/* Lista de proyectos */}
                     <div className="d-flex flex-wrap">
                         { proyectos.length > 0 ? 
-                            proyectos.map( (pro, index) => {
+                            proyectosFiltrados.map( (pro, index) => {
                                 return <div key={index} className="col-12 col-sm-6 col-md-4 col-lg-3 p-1">
                                     <div className="card border-0 shadow-sm">
                                         <div className="card-body text-secondary">

@@ -95,7 +95,7 @@ function Tareas(props) {
                 </DragDropContext>
 
                 {/* Agregar tarea */}
-                <AgregarTarea proyecto={props.proyecto} setProyecto={props.setProyecto} setErrorServidor={props.setErrorServidor}/>
+                <AgregarTarea proyecto={props.proyecto} setProyecto={props.setProyecto} setErrorServidor={props.setErrorServidor} setGuardando={setGuardando}/>
 
                 {/* Mensaje guardando */}
                 <Guardando visible={guardando} />

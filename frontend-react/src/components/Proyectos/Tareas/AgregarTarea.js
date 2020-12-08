@@ -29,6 +29,7 @@ function AgregarTarea(props) {
     }
 
     const crearTarea = async () => {
+        props.setGuardando(true);
         if (!validar()) return;
         ocultar();
         let tareasModificadas = props.proyecto.tareas;
@@ -37,8 +38,10 @@ function AgregarTarea(props) {
         const res = await proyectoService.actualizarProyecto(props.proyecto._id, props.proyecto);
         if (!res || res === 1 || res === 9) {
             props.setErrorServidor('No se logró crear la tarea.');
+            props.setGuardando(false);
             return;
         }
+        props.setGuardando(false);
         props.setProyecto(res);
     }
 

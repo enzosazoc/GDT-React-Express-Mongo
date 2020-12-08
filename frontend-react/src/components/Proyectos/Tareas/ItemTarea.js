@@ -3,9 +3,9 @@
 function Itemtarea(props) {
 
     return (
-        <div className="bg-white text-secondary d-flex flex-wrap align-items-center p-2 rounded shadow-sm" {...props.provided.dragHandleProps}>
-            <div className="col-12 d-flex align-items-center">
-                <div className="p-2">
+        <div className="bg-white text-secondary d-flex flex-wrap align-items-center p-0 rounded shadow-sm">
+            <div className="col-12 p-0 d-flex align-items-center">
+                <div className="p-2 pl-3">
                     {
                         props.tar.estado 
                         ? 
@@ -15,7 +15,7 @@ function Itemtarea(props) {
                     }
                 </div>
                 <div className="p-2 flex-fill overflow-hidden ">
-                    <input name="nombre" className="col-12 h6 text-secondary m-0 text-truncate border-0 p-1" value={props.tar.nombre} onChange={(e) => props.onChange(props.index, e)} onBlur={props.actualizarTareas}/>
+                    <input name="nombre" className="col-12 h6 text-secondary m-0 text-truncate border-0 p-1" title={props.tar.nombre} value={props.tar.nombre} onChange={(e) => props.onChange(props.index, e)} onBlur={props.actualizarTareas}/>
                 </div>
                 <div className="d-flex">
                     <div className="py-2 pl-1 pr-1">
@@ -28,18 +28,20 @@ function Itemtarea(props) {
                             <i className="fas fa-trash"></i>
                         </button>
                     </div>
-                    <div className="py-0 pl-3 pr-1 d-flex align-items-center" style={{color: "#cfd8dc"}}>
-                        <i className="h5 fas fa-arrows-alt-v m-0"></i>
+                    <div className="py-0 pl-3 pr-4 d-flex align-items-center" style={{color: "#cfd8dc"}} {...props.provided.dragHandleProps} title="Arrastrar tarea">
+                        <div className="pl-1 pr-2">
+                            <i className="h5 fas fa-arrows-alt-v m-0"></i>
+                        </div>
                     </div>
                 </div>
             </div>
             <div className="col-12">
                 <div className="collapse" id={"collapseTarea"+props.index}>
                     <div className="p-2">
-                        <hr className="m-0 mb-2"></hr>
-                        <div className="d-flex- flex-wrap">
+                        {/* <hr className="m-0 mb-2"></hr> */}
+                        <div className="d-flex- flex-wrap pb-2">
                             <label className="text-secondary small m-0 font-weight-bold">Descripción</label>
-                            <textarea name="descripcion" className="form-control text-secondary small" value={props.tar.descripcion} onChange={(e) => props.onChange(props.index, e)} onBlur={props.actualizarTareas}/>
+                            <textarea name="descripcion" className="form-control text-secondary small" title={props.tar.descripcion} value={props.tar.descripcion} onChange={(e) => props.onChange(props.index, e)} onBlur={props.actualizarTareas}/>
                         </div>
                     </div>
                 </div>
