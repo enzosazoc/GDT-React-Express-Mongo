@@ -35,23 +35,23 @@ function Home(props) {
                                 </div>
                                 <div className="col-12 col-xl-6 p-2">
                                     <a className="text-decoration-none" href="https://github.com/enzosazoc/GDT-React-Express-Mongo" target="_blank" rel="noopener noreferrer">
-                                        <Item1 logo="fab fa-github" titulo="Github" descripcion="Ingresa al repositorio, para ver el código de la aplicación." />
+                                        <Item1 logo="fab fa-github" titulo="GitHub" descripcion="Ingresa al repositorio, para ver el código de la aplicación." />
                                     </a>
                                 </div>                                
                             </div>
                         )}
 
                         { props.state.logueado && (
-                            <div className="col-12 p-0 d-flex flex-wrap justify-content-center">
-                                <div className="col-12 col-md-4 p-2">
+                            <div className="col-12 p-0 d-flex flex-wrap">
+                                <div className="col-12 col-lg-4 p-2">
                                     <Item2 to="/proyectos" logo="fas fa-folder" titulo="Mis proyectos" descripcion="Crear proyectos para guardar tareas"/>
                                 </div>
-                                <div className="col-12 col-md-4 p-2">
+                                <div className="col-12 col-lg-4 p-2">
                                     <Item2 to="/perfil" logo="fas fa-user-edit" titulo="Perfil de usuario" descripcion="Editar datos de la cuenta"/>
                                 </div>
                                 { props.state.esAdmin && (
-                                    <div className="col-12 col-md-4 p-2">
-                                        <Item2 to="/admin" logo="fas fa-chart-bar" titulo="Administardor" descripcion="Ver información del la app"/>
+                                    <div className="col-12 col-lg-4 p-2">
+                                        <Item2 to="/admin" logo="fas fa-chart-bar" titulo="Administrador" descripcion="Ver información del la app"/>
                                     </div>
                                 ) }
                             </div>

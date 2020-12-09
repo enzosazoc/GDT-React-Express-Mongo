@@ -22,7 +22,7 @@ function Item2(props){
             >
                 <div><i className={"h1 " + estilo.logo + " " + props.logo}></i></div>
                 <h4 className={estilo.texto} title={props.titulo}>{props.titulo}</h4>
-                <div className={"small text-truncate " + estilo.texto} title={props.descripcion}>{props.descripcion}</div>
+                <div className={"small " + estilo.texto} title={props.descripcion}>{props.descripcion}</div>
             </div>
         </Link>
     )

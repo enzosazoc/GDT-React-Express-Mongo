@@ -56,7 +56,7 @@ function Proyectos(props) {
 
     const obtenerFecha = (fecha) => {
         const fechaDate = new Date(fecha);
-        const fechaStr = fechaDate.getDate() + "-" + fechaDate.getMonth() + "-" + fechaDate.getFullYear();
+        const fechaStr = fechaDate.getDate() + "-" + (fechaDate.getMonth() + 1) + "-" + fechaDate.getFullYear();
         return fechaStr;
     }
 
