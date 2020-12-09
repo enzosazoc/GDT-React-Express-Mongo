@@ -16,9 +16,11 @@ export const obtenerDatos = async (req, res) => {
 
         proyectosPorUsuario.sort( (a, b) => (a.proyectos > b.proyectos) ? -1 : ((a.proyectos < b.proyectos) ? 1 : 0) );
 
+        const primerosCinco = proyectosPorUsuario.slice(0, 5);
+
         datos.usuarios = usuarios.length;
         datos.proyectos = proyectos.length;
-        datos.proyectosPorUsuario = proyectosPorUsuario;
+        datos.proyectosPorUsuario = primerosCinco;
 
         res.status(200).json(datos);
     } catch (error) {
